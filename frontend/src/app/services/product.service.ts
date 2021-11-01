@@ -6,7 +6,7 @@ import { DatePipe } from '@angular/common';
 import { Product } from '../models/product';
 
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
-const apiUrl = "/shop/api/products";
+const apiUrl = "http://localhost:8081/shop/api/products";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ const apiUrl = "/shop/api/products";
 export class ProductService {
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private datePipe: DatePipe) { }
 
   getProductsByProductCatalog(productCatalogId: string): Observable<Product[]> {
@@ -31,7 +31,7 @@ export class ProductService {
     const params = new HttpParams().set('productCatalogId', productCatalogId);
     return this.http.post<Product>(apiUrl, product, {headers, params});
   }
-  
+
   updateProduct (id: string, product: Product): Observable<Product> {
     return this.http.put<Product>(`${apiUrl}/${id}`, product, {headers});
   }

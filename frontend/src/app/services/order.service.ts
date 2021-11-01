@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Order } from '../models/order';
 
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
-const apiUrl = "/shop/api/orders";
+const apiUrl = "http://localhost:8081/shop/api/orders";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class OrderService {
     const params = new HttpParams().set('customerId', customerId);
     return this.http.post<Order>(apiUrl, order, {headers, params});
   }
-  
+
   updateOrder (id: string, order: Order): Observable<Order> {
     return this.http.put<Order>(`${apiUrl}/${id}`, order, {headers});
   }
